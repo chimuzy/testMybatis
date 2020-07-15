@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyigeek.d1_mapper.UserMapper">
+
+    <!--
+        1.需求：通过id查询用户信息
+        查询选择select标签
+        id属性  当前namespace下的唯一标识
+        parameterType属性  形成输入参数映射关系  简单类型（基本数据类型、String、包装器类型）、HashMap、pojo
+        resultType属性  形成输出参数映射关系  简单类型（基本数据类型、String、包装器类型）、HashMap、pojo
+
+    -->
+    <select id="findOne" parameterType="Integer" resultType="User">
+        select * from user where id=#{id}
+    </select>
+
+    <select id="findByName" parameterType="String" resultType="User">
+        select * from user where username like concat('%',#{name},'%')
+    </select>
+
+</mapper>
