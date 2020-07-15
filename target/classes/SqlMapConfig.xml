@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE configuration        
-        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"        
-        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
         <!-- 加载属性文件  db.properties -->    
         <properties resource="db.properties"></properties>
@@ -16,7 +16,8 @@
             <environment id="development">            
                 <!-- 使用jdbc事务管理,事务控制由mybatis-->            
                 <transactionManager type="JDBC" />
-                 <!-- 数据库连接池，由mybatis管理，通过${}直接加载属性文件上的值-->            <!--  -->            
+                 <!-- 数据库连接池，由mybatis管理，通过${}直接加载属性文件上的值-->            
+                 <!--  -->            
                 <dataSource type="POOLED">                
                     <property name="driver" value="${db.driverClass}" />                
                     <property name="url" value="${db.jdbcUrl}" />                
