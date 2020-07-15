@@ -13,6 +13,13 @@ public class User {
     public User() {
     }
 
+    public User(String username, String sex, Date birthday, String address) {
+        this.username = username;
+        this.sex = sex;
+        this.birthday = birthday;
+        this.address = address;
+    }
+
     public User(Integer id, String username, String sex, Date birthday, String address) {
         this.id = id;
         this.username = username;

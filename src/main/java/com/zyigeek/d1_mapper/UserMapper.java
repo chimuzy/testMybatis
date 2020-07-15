@@ -2,6 +2,8 @@ package com.zyigeek.d1_mapper;
 
 import com.zyigeek.pojo.User;
 
+import java.util.List;
+
 /*
 * Mapper接口与Mapper映射文件遵循规范，才可以为Mapper接口生成代理对象
 * 1.Mapper接口与Mapper映射文件 同名，且在同包下
@@ -16,6 +18,8 @@ public interface UserMapper {
     //通过id查询用户信息
     public User findOne(Integer id);
 
-    public User findByName(String username);
+    public List<User> findByName(String username);
+
+    public void insert(User user);
 
 }

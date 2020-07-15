@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyigeek.d2_sql.UserMapper">
+    <!-- sql片段：提高动态SQL的利用率，不适用where标签目的是使sql -->
+    <sql id="user_query">
+        <if test="userCustom!=null">
+            <if test="userCustom.sex!=null and userCustom.sex!=''">
+                and sex=#{userCustom.sex}
+            </if>
+            <if test="userCustom.username!=null and userCustom.username!=''">
+                and username like concat('%',#{userCustom.username},'%')
+            </if>
+        </if>
+    </sql>
+    <sql id="user_query_ids">
+        <if test="ids!=null">
+            <foreach collection="ids" item="id" open="and id in (" close=")" separator=",">
+                #{id}
+            </foreach>
+        </if>
+    </sql>
+
+    <!--
+        1.通过用户性别和姓名查询用户列表，不允许性别或姓名为null或空串
+    -->
+    <select id="findList" parameterType="UserQueryVO" resultType="UserCustom">
+        select * from user
+        <where>
+            <include refid="user_query"></include>
+        </where>
+    </select>
+    <!--
+        2.通过用户性别和姓名查询用户列表，不允许性别或姓名为null或空串
+    -->
+    <select id="findCount" parameterType="UserQueryVO" resultType="Integer">
+        select count(*) from user
+        <where>
+            <include refid="user_query"></include>
+        </where>
+    </select>
+    <!--
+        3.通过用户性别和姓名查询用户列表，且id为15或20或25；不允许性别或姓名为null或空串
+    -->
+    <select id="findListByIds" parameterType="UserQueryVO" resultType="UserCustom">
+        select * from user
+        <where>
+            <include refid="user_query"></include>
+            <include refid="user_query_ids"></include>
+        </where>
+    </select>
+</mapper>

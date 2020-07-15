@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace属性  划分sql语句空间 -->
 <mapper namespace="com.zyigeek.d1_mapper.UserMapper">
 
     <!--
@@ -10,14 +11,22 @@
         id属性  当前namespace下的唯一标识
         parameterType属性  形成输入参数映射关系  简单类型（基本数据类型、String、包装器类型）、HashMap、pojo
         resultType属性  形成输出参数映射关系  简单类型（基本数据类型、String、包装器类型）、HashMap、pojo
-
     -->
     <select id="findOne" parameterType="Integer" resultType="User">
         select * from user where id=#{id}
     </select>
-
+    <!-- 根据用户名进行模糊查询用户信息 resultType类型写的单一类型，例如若返回值是一个集合类型，泽泻集合的泛型类型即可 -->
     <select id="findByName" parameterType="String" resultType="User">
         select * from user where username like concat('%',#{name},'%')
     </select>
+    <!-- 添加用户信息 -->
+    <insert id="insert" parameterType="User">
+        <!-- 获取插入用户的id -->
+        <selectKey keyProperty="id" resultType="Integer" order="AFTER">
+            select last_insert_id()
+        </selectKey>
+        insert into user(username,sex,birthday,address)values(#{username},#{sex},#{birthday},#{address})
+    </insert>
+
 
 </mapper>
