@@ -27,6 +27,14 @@
         </selectKey>
         insert into user(username,sex,birthday,address)values(#{username},#{sex},#{birthday},#{address})
     </insert>
+    <!-- 更新用户信息 -->
+    <update id="update" parameterType="User">
+        update user set username=#{username},sex=#{sex},birthday=#{birthday},address=#{address}where id=#{id}
+    </update>
+    <!-- 删除用户信息 -->
+    <delete id="delete" parameterType="Integer">
+        delete from user where id=#{id}
+    </delete>
 
 
 </mapper>

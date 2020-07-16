@@ -31,4 +31,20 @@
         select o.*,d.id did,d.items_id,d.items_num from orders o,orderdetail d where o.id=d.orders_id
     </select>
 
+    <resultMap id="includeUser" type="OrdersCustom" extends="map">
+        <association property="userCustom" javaType="UserCustom" >
+            <id column="user_id" property="id"/>
+            <result column="username" property="username"/>
+            <result column="birthday" property="birthday"/>
+            <result column="address" property="address"/>
+            <result column="sex" property="sex"/>
+        </association>
+    </resultMap>
+
+    <!-- 查询订单及订单明细信息及用户信息 -->
+    <select id="findList" resultMap="includeUser">
+        select o.*,d.id did,d.items_id,d.items_num,u.username,u.birthday,u.address,u.sex
+        from user u,orders o,orderdetail d where o.id=d.orders_id and u.id=o.user_id
+    </select>
+
 </mapper>

@@ -21,6 +21,13 @@
             </foreach>
         </if>
     </sql>
+    <sql id="user_query_ids2">
+        <if test="ids!=null">
+            <foreach collection="ids" item="id" open="and (" close=")" separator=" or ">
+                id=#{id}
+            </foreach>
+        </if>
+    </sql>
 
     <!--
         1.通过用户性别和姓名查询用户列表，不允许性别或姓名为null或空串
@@ -47,7 +54,7 @@
         select * from user
         <where>
             <include refid="user_query"></include>
-            <include refid="user_query_ids"></include>
+            <include refid="user_query_ids2"></include>
         </where>
     </select>
 </mapper>

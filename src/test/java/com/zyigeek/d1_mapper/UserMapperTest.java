@@ -76,4 +76,25 @@ public class UserMapperTest {
         //关闭资源
         sqlSession.close();
     }
+
+    @Test
+    public void update(){
+        SqlSession sqlSession = factory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user=userMapper.findOne(29);
+        user.setSex("2");
+        user.setAddress("江苏南京");
+        userMapper.update(user);
+        sqlSession.commit();
+        sqlSession.close();
+    }
+
+    @Test
+    public void delete(){
+        SqlSession sqlSession = factory.openSession();
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        userMapper.delete(29);
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

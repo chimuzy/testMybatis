@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class OrdersAndDetailMapTest {
+public class OrdersAndDetailMapperTest {
 
     private SqlSessionFactory factory;
 
@@ -24,6 +24,17 @@ public class OrdersAndDetailMapTest {
         SqlSession sqlSession = factory.openSession();
         OrdersAndDetailMapper mapper = sqlSession.getMapper(OrdersAndDetailMapper.class);
         List<OrdersCustom> list=mapper.find();
+        for(OrdersCustom o:list){
+            System.out.println(o);
+        }
+        sqlSession.close();
+    }
+
+    @Test
+    public void findList() {
+        SqlSession sqlSession = factory.openSession();
+        OrdersAndDetailMapper mapper = sqlSession.getMapper(OrdersAndDetailMapper.class);
+        List<OrdersCustom> list=mapper.findList();
         for(OrdersCustom o:list){
             System.out.println(o);
         }

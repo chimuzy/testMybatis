@@ -7,4 +7,6 @@ import java.util.List;
 public interface OrdersAndDetailMapper {
 
     public List<OrdersCustom> find();
+
+    public List<OrdersCustom> findList();
 }
