@@ -36,7 +36,8 @@ public class UserCustom extends User{
     @Override
     public String toString() {
         return "UserCustom{" +
-                "orderList=" + orderList +
+                super.toString()+
+                ", orderList=" + orderList +
                 '}';
     }
 }

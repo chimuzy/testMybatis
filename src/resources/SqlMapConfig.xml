@@ -38,6 +38,7 @@
         <package name="com.zyigeek.d3_oo"/>
         <package name="com.zyigeek.d4_om"/>
         <package name="com.zyigeek.d5_mm"/>
+        <package name="com.zyigeek.d6_generator"/>
     </mappers>
 
 </configuration>

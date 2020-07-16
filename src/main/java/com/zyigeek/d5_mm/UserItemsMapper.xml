@@ -16,7 +16,7 @@
         <!-- 一对多关联  订单信息 -->
         <collection property="orderList" ofType="OrdersCustom" >
             <id column="oid" property="id" />
-            <result column="id" property="userId" />
+            <result column="id" property="userid" />
             <result column="createtime" property="createtime" />
             <result column="number" property="number" />
             <result column="note" property="note" />
@@ -27,7 +27,6 @@
                 <result column="oid" property="ordersId" />
                 <result column="iid" property="itemsId" />
                 <result column="items_num" property="itemsNum" />
-
                 <!-- 一对一关联  商品信息 -->
                 <association property="itemsCustom" javaType="ItemsCustom">
                     <id column="iid" property="id" />
@@ -37,11 +36,8 @@
                     <result column="time" property="createtime" />
                     <result column="pic" property="pic" />
                 </association>
-
             </collection>
-
         </collection>
-
     </resultMap>
 
 
